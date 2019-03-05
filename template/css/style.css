@@ -1842,3 +1842,10 @@ form label {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.post p {
+  margin-bottom: 0px;
+}
+.post .card-body{
+  margin-bottom: 20px;
+}
