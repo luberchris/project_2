@@ -47,11 +47,9 @@
 	<script src="js/respond.min.js"></script>
     <![endif]-->
 
-    <!-- star-rating -->
-    <link rel="stylesheet" href="css/star-rating.css">
-
-    <link href="https://unpkg.com/ionicons@4.4.4/dist/css/ionicons.min.css" rel="stylesheet">
-
+    <!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  
 	</head>
 	<body>
 		
@@ -70,16 +68,16 @@
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
-						<!-- <li class="active"><a href="event.html">Event</a></li> -->
 						<li class="has-dropdown">
-							<a href="#">Event</a>
+							<a href="event.html">Event</a>
 							<ul class="dropdown">
 								<li><a href="#">Web Design</a></li>
 								<li><a href="#">eCommerce</a></li>
 								<li><a href="#">Branding</a></li>
 								<li><a href="#">API</a></li>
 							</ul>
-						</li>
+                        </li>
+                        <li><a href="event.html">Calender</a></li>
 						<li><a href="contact.html">Contact</a></li>
 					</ul>
 				</div>
@@ -90,7 +88,7 @@
     
 
 	<!-- header -->
-	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/img_1.jpg)">
+	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/post_top.jpg)">
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row">
@@ -146,23 +144,15 @@
 
                 <!-- review -->
                 <div class="review row">
-                    <form class="form-inline">
-                        <div class="form-group mb-2">
-                            <label for="staticEmail2" class="sr-only">stars</label>
+                    <form> 
+                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="1one" style="font-size:20px;cursor:pointer;"  class="fas fa-star checked"></span>
+                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one"  style="font-size:20px;cursor:pointer;" class="fas fa-star "></span>
+                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one"  style="font-size:20px;cursor:pointer;" class="fas fa-star "></span>
+                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"  style="font-size:20px;cursor:pointer;" class="fas fa-star"></span>
+                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"  style="font-size:20px;cursor:pointer;" class="fas fa-star"></span>                        
+                        <textarea class="form-control" rows="3" id="comment" placeholder="Enter your review"></textarea>
+                        <button  onclick="result()" type="button" class="btn btn-primary">Submit</button>
 
-                            <x-star-rating>
-                                <div class="star full"></div>
-                                <div class="star full"></div>
-                                <div class="star full"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </x-star-rating>
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="☆☆☆☆☆">
-                        </div>
-                        <div class="form-group mx-sm-8 mb-2">
-                            <input type="text" class="form-control" id="inputRevies" placeholder="comment">
-                        </div>
-                        <button type="submit" class="btn btn-primary mb-2">Submit</button>
                     </form>
                 </div>
 
@@ -199,8 +189,46 @@
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	
+    </div>
+    
+
+
+
+	<script>
+        
+            //initial setup
+            document.addEventListener('DOMContentLoaded', function(){
+                let stars = document.querySelectorAll('.star');
+                stars.forEach(function(star){
+                    star.addEventListener('click', setRating); 
+                });
+                
+                let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
+                let target = stars[rating - 1];
+                target.dispatchEvent(new MouseEvent('click'));
+
+            });
+            function setRating(ev){
+                let span = ev.currentTarget;
+                let stars = document.querySelectorAll('.star');
+                let match = false;
+                let num = 0;
+                stars.forEach(function(star, index){
+                    if(match){
+                        star.classList.remove('rated');
+                    }else{
+                        star.classList.add('rated');
+                    }
+                    //are we currently looking at the span that was clicked
+                    if(star === span){
+                        match = true;
+                        num = index + 1;
+                    }
+                });
+                document.querySelector('.stars').setAttribute('data-rating', num);
+            }
+            
+        </script>
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -218,8 +246,8 @@
 	<script src="js/magnific-popup-options.js"></script>
 	<!-- Main -->
     <script src="js/main.js"></script>
+    <script src="js/review.js"></script>
     
-    <script src="js/starRating.js"></script>
 
 	</body>
 </html>

@@ -1687,7 +1687,7 @@ form label {
   transition: 0.3s;
 }
 .fh5co-project-item .fh5co-text {
-  padding: 0px 10px 10px 20px;
+  padding: 0px 10px 20px 20px;
   text-align: center;
 }
 .fh5co-project-item .fh5co-text h2, .fh5co-project-item .fh5co-text span {
@@ -1708,7 +1708,11 @@ form label {
   color: #000;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
-  transition: 0.5s;
+  transition: 0.5s; 
+  margin: 0px;
+}
+.fh5co-text hr{
+  margin: 10px 0px;
 }
 .fh5co-project-item:hover, .fh5co-project-item:focus {
   bottom: 7px;
@@ -1848,4 +1852,11 @@ form label {
 }
 .post .card-body{
   margin-bottom: 20px;
+}
+.review .checked {
+  color: orange;
+  
+}
+.review textarea {
+  margin-bottom: 5px;
 }
