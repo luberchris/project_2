@@ -11,8 +11,15 @@
   },
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^6.2.0",
+
     "bcrypt-nodejs": "0.0.3",
+<<<<<<< HEAD
     "dotenv": "^6.0.0",
+=======
+    "express-session": "^1.14.2",
+
+>>>>>>> 2cac926baad0fe76a0ecd1c340b8f6aaa51f6743
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
     "express-session": "^1.15.6",
