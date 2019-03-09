@@ -1,5 +1,6 @@
 // Requiring path to so we can use relative routes to our HTML files
 var path = require("path");
+var axios = require("axios");
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -40,6 +41,21 @@ module.exports = function(app) {
 
   // Load event page
   app.get("/event", function(req, res){
+
+    var queryString = "https://phillyfunguide.com/api/events?apikey="
+    var apiKey = "w236089434596839311";
+    queryString += apiKey;
+    queryString += "&limit=100"
+    axios({
+      method:'get',
+      url: queryString
+      // responseType:'stream'
+    })
+      .then(function(response) {
+        console.log("--------------------------------");
+        console.log(response);
+      // response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
+    });
     res.render("event");
   })
 
