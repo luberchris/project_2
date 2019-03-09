@@ -94,6 +94,29 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+///////////////////////// For hashing passwords in DB
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+var bcrypt = require('bcrypt');
+bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash("my password", salt, function(err, hash) {
+        // Store hash in your password DB.
+    });
+});
+ 
+// or
+ 
+bcrypt.hash('bacon', 10, function(err, hash) {
+    // Store hash in your password DB.
+});
+
+// Load password hash from DB
+bcrypt.compare("my password", hash, function(err, res) {
+  // res === true
+});
+bcrypt.compare("not my password", hash, function(err, res) {
+  // res === false
+});

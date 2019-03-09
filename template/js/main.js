@@ -272,6 +272,7 @@
 	};
 
 	
+	
 	$(function(){
 		mobileMenuOutsideClick();
 		formTab();
@@ -284,6 +285,5 @@
 		loaderPage();
 		counterWayPoint();
 	});
-
 
 }());
