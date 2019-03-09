@@ -8,7 +8,7 @@
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
-	 <!-- 
+	<!-- 
 	//////////////////////////////////////////////////////
 
 	FREE HTML5 TEMPLATE 
@@ -56,10 +56,131 @@
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+ 	<!-- FOR IE9 below -->
+	<!-- [if lt IE 9]> -->
+	<!-- <script src="js/respond.min.js"></script> -->
+	<!-- <![endif] -->
+
+<!-- Calendar -->
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css' rel='stylesheet' />
+<script src='../fullcalendar/lib/moment.min.js'></script>
+<script src='../fullcalendar/lib/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js'></script>
+<script>
+
+  $(document).ready(function() {
+
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      defaultDate: '2019-01-12',
+      navLinks: true, // can click day/week names to navigate views
+      selectable: true,
+      selectHelper: true,
+      select: function(start, end) {
+        var title = prompt('Event Title:');
+        var eventData;
+        if (title) {
+          eventData = {
+            title: title,
+            start: start,
+            end: end
+          };
+          $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+        }
+        $('#calendar').fullCalendar('unselect');
+      },
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2019-01-01'
+        },
+        {
+          title: 'Long Event',
+          start: '2019-01-07',
+          end: '2019-01-10'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2019-01-09T16:00:00'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2019-01-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2019-01-11',
+          end: '2019-01-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2019-01-12T10:30:00',
+          end: '2019-01-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2019-01-12T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2019-01-12T14:30:00'
+        },
+        {
+          title: 'Happy Hour',
+          start: '2019-01-12T17:30:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2019-01-12T20:00:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2019-01-13T07:00:00'
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2019-01-28'
+        }
+      ]
+    });
+
+  });
+
+</script>
+<style>
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	.fc-toolbar {
+		margin-top: 700px;
+	}
+
+</style>
+<!-- Calendar end -->
 
 	</head>
 	<body>
@@ -96,84 +217,37 @@
 				
 			</div>
 		</nav>
-	
-	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/img_4.jpg)">
+	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/img_2.jpg)">
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-12 col-md-offset-0 text-left">
+					
+
 					<div class="row row-mt-15em">
 
 						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
-							<span class="intro-text-small">Don't be shy</span>
-							<h1>Get In Touch</h1>	
+							<span class="intro-text-small">See Our</span>
+							<h1>Awesome Features</h1>	
 						</div>
 						
 					</div>
+							
 					
 				</div>
 			</div>
 		</div>
 	</header>
-	<br><br>
-		<div class="gtco-container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-6 animate-box">
-					<h3>Get In Touch</h3>
-					<form action="#">
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="sr-only" for="name">Name</label>
-								<input type="text" id="name" class="form-control" placeholder="Your firstname">
-							</div>
-							
-						</div>
 
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="sr-only" for="email">Email</label>
-								<input type="text" id="email" class="form-control" placeholder="Your email address">
-							</div>
-						</div>
-
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="sr-only" for="subject">Subject</label>
-								<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
-							</div>
-						</div>
-
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="sr-only" for="message">Message</label>
-								<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Write us something"></textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<input type="submit" value="Send Message" class="btn btn-primary">
-						</div>
-
-					</form>		
-				</div>
-				<div class="col-md-5 col-md-push-1 animate-box">
-					
-					<div class="gtco-contact-info">
-						<h3>Contact Information</h3>
-						<ul>
-							<li class="address">198 West 21th Street, <br> Suite 721 New York NY 10016</li>
-							<li class="phone"><a href="tel://1234567920">+ 1235 2355 98</a></li>
-							<li class="email"><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
-							<li class="url"><a href="http://FreeHTML5.co">FreeHTML5.co</a></li>
-						</ul>
-					</div>
-				</div>
-				</div>
-			</div>
-		</div>
+	<!-- Calendar goes in here -->
+	<div class = "calendar">
+		<div id="calendar"></div>
+	</div>
+<!-- Calendar end -->
 
 	<footer id="gtco-footer" role="contentinfo">
 		<div class="gtco-container">
+			
 
 			<div class="row copyright">
 				<div class="col-md-12">
@@ -201,23 +275,23 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- countTo -->
-	<script src="js/jquery.countTo.js"></script>
-	<!-- Magnific Popup -->
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/magnific-popup-options.js"></script>
-	<!-- Main -->
-	<script src="js/main.js"></script>
+
 	</body>
+	
+		<!-- jQuery Easing -->
+		<script src="js/jquery.easing.1.3.js"></script>
+		<!-- Bootstrap -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Waypoints -->
+		<script src="js/jquery.waypoints.min.js"></script>
+		<!-- Carousel -->
+		<script src="js/owl.carousel.min.js"></script>
+		<!-- countTo -->
+		<script src="js/jquery.countTo.js"></script>
+		<!-- Magnific Popup -->
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/magnific-popup-options.js"></script>
+		<!-- Main -->
+		<script src="js/main.js"></script>
 </html>
 
