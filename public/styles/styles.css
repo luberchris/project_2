@@ -1689,23 +1689,23 @@ form label {
   -o-transition: 0.3s;
   transition: 0.3s;
 }
-.fh5co-project-item .fh5co-text {
-  padding: 0px 10px 20px 20px;
+.fh5co-project-item .fh5co-title {
+  padding: 0px 10px 0px 10px;
   text-align: center;
 }
-.fh5co-project-item .fh5co-text h2, .fh5co-project-item .fh5co-text span {
+/* .fh5co-project-item .fh5co-text h2, .fh5co-project-item .fh5co-text span {
   text-decoration: none !important;
-}
-.fh5co-project-item .fh5co-text h2 {
-  font-size: 20px;
-  font-weight: 300;
-  margin: 0 0 10px 0;
+} */
+.fh5co-project-item .fh5co-title h2 {
   color: #f54c53;
 }
-.fh5co-project-item .fh5co-text span {
+/* .fh5co-project-item .fh5co-text span {
   color: #b3b3b3;
   font-size: 16px;
   font-weight: 400;
+} */
+.fh5co-project-item .fh5co-text{
+  padding: 0px 10px 0px 10px;
 }
 .fh5co-project-item .fh5co-text p {
   color: #000;
@@ -1713,10 +1713,27 @@ form label {
   -o-transition: 0.5s;
   transition: 0.5s; 
   margin: 0px;
+  font-size: 14px;
+}
+.fh5co-project-item .fh5co-review{
+  padding: 0px 10px 0px 10px;
+  text-align: center;
+}
+.fh5co-project-item .fh5co-review p {
+  color: #000;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s; 
+  margin: 0px;
+}
+.fh5co-project-item .fh5co-review p:last-child{
+  color: green;
+  padding-bottom: 10px;
 }
 .fh5co-text hr{
   margin: 10px 0px;
 }
+
 .fh5co-project-item:hover, .fh5co-project-item:focus {
   bottom: 7px;
   text-decoration: none;
@@ -1853,8 +1870,13 @@ form label {
 .post p {
   margin-bottom: 0px;
 }
-.post .card-body{
-  margin-bottom: 20px;
+.post-des div{
+  margin-bottom: 40px;
+}
+.post-des span {
+  color: #f54c53;
+  /* font-size: 14px; */
+  font-weight: bold;
 }
 .review .checked {
   color: orange;
@@ -1862,4 +1884,15 @@ form label {
 }
 .review textarea {
   margin-bottom: 5px;
+}
+/* ================================================== */
+/* Calendar */
+/* ================================================== */
+#calendar {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.fc-toolbar {
+  margin-top: 700px;
 }
