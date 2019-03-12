@@ -12,56 +12,98 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
 
     res.render("index");
-    // db.Example.findAll({}).then(function(dbExamples) {
-    //   res.render("index", {
-    //     msg: "Welcome!",
-    //     examples: dbExamples
-    //   });
-    // });
-    //     db.Example.findAll({}).then(function(dbExamples) {
-    //       res.render("index", {
-    //         msg: "Welcome!",
-    //         examples: dbExamples
-    //       });
-    //     });
-    //         // If the user already has an account send them to the members page
-    //     if (req.user) {
-    //       res.redirect("/members");
-    //     }
-    //     res.sendFile(path.join(__dirname, "../public/signup.html"));
-    //   });
-
-//   app.get("/login", function(req, res) {
-//     // If the user already has an account send them to the members page
-//     if (req.user) {
-//       res.redirect("/members");
-//     }
-//     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   // Load event page
   app.get("/event", function(req, res){
 
-    var queryString = "https://phillyfunguide.com/api/events?apikey="
-    var apiKey = "w236089434596839311";
-    queryString += apiKey;
-    queryString += "&limit=100"
     axios({
-      method:'get',
-      url: queryString
-      // responseType:'stream'
+      method:"get",
+      url : "https://www.eventbriteapi.com/v3/events/search/?location.address=Philadelphia&token=IJBDXJMHIUBUT3BVNWH6"
     })
-      .then(function(response) {
-        console.log("--------------------------------");
-        console.log(response);
-      // response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
+    .then(function(eventBriteDB){
+      // console.log(eventBriteDB.data.events[0]);
+      res.render("event", {eventBriteDB})
     });
-    res.render("event");
-  })
+    // db.EventsTest.findAll({}).then(function(dbEvents){
+    //   res.render("event", {dbEvents});
+    // })
+    
+  });
+
+  app.get("/calendar", function(req, res){
+    res.render("calendar");
+  });
+
+  app.get("/post/:id", function(req, res){
+    var category_id = "";
+    var venue_id = "";
+    var organizer_id = "";
+    axios({
+      method:"get",
+      url : "https://www.eventbriteapi.com/v3/events/"+req.params.id+"?token=IJBDXJMHIUBUT3BVNWH6"
+    })
+    .then(function(eventBriteDB){
+      category_id = eventBriteDB.data.category_id;
+      venue_id = eventBriteDB.data.venue_id;
+      organizer_id = eventBriteDB.data.organizer_id;
+      axios({
+        method:"get",
+        url : "https://www.eventbriteapi.com/v3/categories/"+category_id+"/?token=IJBDXJMHIUBUT3BVNWH6"
+      })
+      .then(function(categoryDB){
+        axios({
+          method:"get",
+          url : "https://www.eventbriteapi.com/v3/organizers/"+organizer_id+"/?token=IJBDXJMHIUBUT3BVNWH6"
+        })
+        .then(function(organizerDB){
+          axios({
+            method:"get",
+            url : "https://www.eventbriteapi.com/v3/venues/"+venue_id+"/?token=IJBDXJMHIUBUT3BVNWH6"
+          })
+          .then(function(venueDB){
+            res.render("post", {
+              eventBriteDB : eventBriteDB,
+              categoryDB : categoryDB,
+              organizerDB : organizerDB,
+              venueDB : venueDB
+            })
+          })
+          
+        })
+      });
+    });
+
+    
+  });
+
+  // app.get("/test", function(req, res){
+  //   var queryString = "https://phillyfunguide.com/api/events?apikey="
+  //   var apiKey = "w236089434596839311";
+  //   queryString += apiKey;
+  //   queryString += "&limit=18"
+  //   axios({
+  //     method:'get',
+  //     url: queryString
+  //   })
+  //     .then(function(funGuideDB) {
+        
+  //       for(var i=0; i<funGuideDB.data.items.length; i++){
+  //         console.log("----------------funsavers----------------");
+  //         console.log(funGuideDB.data.items[i].funsavers);
+  //       }
+        
+        
+  //   });
+  // });
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+    db.Example.findOne({ 
+      where: { 
+        id: req.params.id 
+      } 
+    }).then(function(dbExample) {
       res.render("example", {
         example: dbExample
       });

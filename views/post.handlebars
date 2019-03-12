@@ -1,0 +1,166 @@
+
+	<div class="gtco-loader"></div>
+	
+	<div id="page">
+	
+	<div class="page-inner">
+	<nav class="gtco-nav" role="navigation">
+		<div class="gtco-container">
+			
+			<div class="row">
+				<div class="col-sm-4 col-xs-12">
+					<div id="gtco-logo"><a href="/">P<em>.</em> MONTHLY</a></div>
+				</div>
+				<div class="col-xs-8 text-right menu-1">
+					<ul>
+                        <li class="has-dropdown">
+                            <a href="/event">Event</a>
+                            <ul class="dropdown">
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">...</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/calendar">Calender</a></li>
+                        <li><a href="#">log in</a></li>
+                    </ul>
+				</div>
+			</div>
+			
+		</div>
+    </nav>
+    
+
+	<!-- header -->
+	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url({{eventBriteDB.data.logo.original.url}})">
+		<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-left">
+					
+
+					<div class="row row-mt-15em">
+
+						<div class="col-md-10 mt-text animate-box" data-animate-effect="fadeInUp">
+							<span class="intro-text-small">Events</span>
+							<h1>{{eventBriteDB.data.name.text}}</h1>	
+                            {{!-- //Posibility of Our Products --}}
+						</div>
+						
+					</div>
+							
+					
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<!-- content -->	
+
+	<div class="gtco-section">
+		<div class="gtco-container">
+			<!-- event div -->
+			<div class="post">
+
+                <!-- description -->
+                <div class="post-des">
+                    <div>{{eventBriteDB.data.description.text}}</div>
+                    <hr>
+                    <p class="mb-0"><span>When : </span>{{eventBriteDB.data.start.local}} ~ {{eventBriteDB.data.end.local}}</p>
+                    <p class=""><span>Where : </span>{{venueDB.data.address.localized_multi_line_address_display}}</p>
+                    <p class=""><span>Cost :</span>
+                    {{#unless eventBriteDB.data.is_free}}
+                        Free
+                    {{/unless}}</p>
+                    <hr>
+                    <p><span>Categoty : </span>{{categoryDB.data.name}}</p>
+                    <p><span>Organizer : </span>{{organizerDB.data.name}}</p>
+                    <p><span>website : </span>{{organizerDB.data.website}}</p>
+                    <p><span>Ticket URL : </span><a href="{{dbEvent.ticketUrl}}">{{dbEvent.ticketUrl}}</a></p>
+                    
+                </div>
+                <hr>
+
+                <!-- review -->
+                <div class="review">
+                    <form> 
+                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="1one" style="font-size:20px;cursor:pointer;"  class="fas fa-star checked"></span>
+                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one"  style="font-size:20px;cursor:pointer;" class="fas fa-star "></span>
+                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one"  style="font-size:20px;cursor:pointer;" class="fas fa-star "></span>
+                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"  style="font-size:20px;cursor:pointer;" class="fas fa-star"></span>
+                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"  style="font-size:20px;cursor:pointer;" class="fas fa-star"></span>                        
+                        <textarea class="form-control" rows="3" id="comment" placeholder="Enter your review"></textarea>
+                        <button  onclick="result()" type="button" class="btn btn-primary">Submit</button>
+
+                    </form>
+                </div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer id="gtco-footer" role="contentinfo">
+		<div class="gtco-container">
+			
+
+			<div class="row copyright">
+				<div class="col-md-12">
+					<p class="pull-left">
+						<small class="block">&copy; 2019 P.MONTHLY. All Rights Reserved.</small> 
+						<!-- <small class="block">Designed by <a href="http://FreeHTML5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small> -->
+					</p>
+					<p class="pull-right">
+						<ul class="gtco-social-icons pull-right">
+							<li><a href="#"><i class="icon-twitter"></i></a></li>
+							<li><a href="#"><i class="icon-facebook"></i></a></li>
+							<li><a href="#"><i class="icon-linkedin"></i></a></li>
+							<li><a href="#"><i class="icon-dribbble"></i></a></li>
+						</ul>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+	</div>
+
+	</div>
+
+    <script>
+        
+            //initial setup
+            document.addEventListener('DOMContentLoaded', function(){
+                let stars = document.querySelectorAll('.star');
+                stars.forEach(function(star){
+                    star.addEventListener('click', setRating); 
+                });
+                
+                ///let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
+                ///let target = stars[rating - 1];
+                ///target.dispatchEvent(new MouseEvent('click'));
+
+            });
+            function setRating(ev){
+                let span = ev.currentTarget;
+                let stars = document.querySelectorAll('.star');
+                let match = false;
+                let num = 0;
+                stars.forEach(function(star, index){
+                    if(match){
+                        star.classList.remove('rated');
+                    }else{
+                        star.classList.add('rated');
+                    }
+                    //are we currently looking at the span that was clicked
+                    if(star === span){
+                        match = true;
+                        num = index + 1;
+                    }
+                });
+                document.querySelector('.stars').setAttribute('data-rating', num);
+            }
+            
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/post.js"></script>

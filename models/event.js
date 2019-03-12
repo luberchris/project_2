@@ -1,3 +1,4 @@
+
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
@@ -18,3 +19,4 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Event;
 };
+
