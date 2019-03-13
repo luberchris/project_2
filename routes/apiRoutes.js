@@ -75,4 +75,11 @@ module.exports = function(app) {
     }
   });
 
+
+  app.post("/api/review",function(req, res){
+    db.Review.create(req.body)
+    .then(function(dbReview) {
+      res.json(dbReview);
+    });
+  })
 };

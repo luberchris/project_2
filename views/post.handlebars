@@ -15,12 +15,12 @@
 					<ul>
                         <li class="has-dropdown">
                             <a href="/event">Event</a>
-                            <ul class="dropdown">
+                            {{!-- <ul class="dropdown">
                                 <li><a href="#">...</a></li>
                                 <li><a href="#">...</a></li>
                                 <li><a href="#">...</a></li>
                                 <li><a href="#">...</a></li>
-                            </ul>
+                            </ul> --}}
                         </li>
                         <li><a href="/calendar">Calender</a></li>
                         <li><a href="#">log in</a></li>
@@ -52,6 +52,8 @@
 							
 					
 				</div>
+
+                
 			</div>
 		</div>
 	</header>
@@ -64,39 +66,57 @@
 			<div class="post">
 
                 <!-- description -->
-                <div class="post-des">
-                    <div>{{eventBriteDB.data.description.text}}</div>
-                    <hr>
-                    <p class="mb-0"><span>When : </span>{{eventBriteDB.data.start.local}} ~ {{eventBriteDB.data.end.local}}</p>
-                    <p class=""><span>Where : </span>{{venueDB.data.address.localized_multi_line_address_display}}</p>
-                    <p class=""><span>Cost :</span>
-                    {{#unless eventBriteDB.data.is_free}}
-                        Free
-                    {{/unless}}</p>
-                    <hr>
-                    <p><span>Categoty : </span>{{categoryDB.data.name}}</p>
-                    <p><span>Organizer : </span>{{organizerDB.data.name}}</p>
-                    <p><span>website : </span>{{organizerDB.data.website}}</p>
-                    <p><span>Ticket URL : </span><a href="{{dbEvent.ticketUrl}}">{{dbEvent.ticketUrl}}</a></p>
+                <div class="post-des row">
+                    <div class="col-md-8">{{eventBriteDB.data.description.text}}</div>
+                    
+                    <div class="col-md-4">
+                        <p class="mb-0"><span>When : </span>{{eventBriteDB.data.start.local}} ~ {{eventBriteDB.data.end.local}}</p>
+                        <p class=""><span>Where : </span>{{venueDB.data.address.localized_multi_line_address_display}}</p>
+                        <p class=""><span>Cost :</span>
+                        {{#if is_free}}Free{{else}}paid{{/if}}</p>
+                        <br>
+                        <p><span>Categoty : </span>{{categoryDB.data.name}}</p>
+                        <p><span>Organizer : </span>{{organizerDB.data.name}}</p>
+                        <p><span>Website : </span>{{organizerDB.data.website}}</p>
+                        {{!-- <p><span>Ticket URL : </span><a href="{{dbEvent.ticketUrl}}">{{dbEvent.ticketUrl}}</a></p> --}}
+                    </div>
                     
                 </div>
-                <hr>
-
-                <!-- review -->
-                <div class="review">
-                    <form> 
-                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="1one" style="font-size:20px;cursor:pointer;"  class="fas fa-star checked"></span>
-                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one"  style="font-size:20px;cursor:pointer;" class="fas fa-star "></span>
-                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one"  style="font-size:20px;cursor:pointer;" class="fas fa-star "></span>
-                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"  style="font-size:20px;cursor:pointer;" class="fas fa-star"></span>
-                        <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"  style="font-size:20px;cursor:pointer;" class="fas fa-star"></span>                        
-                        <textarea class="form-control" rows="3" id="comment" placeholder="Enter your review"></textarea>
-                        <button  onclick="result()" type="button" class="btn btn-primary">Submit</button>
-
-                    </form>
-                </div>
-
 			</div>
+
+            {{!-- reviews --}}
+            <hr>
+            <div class="review">
+                {{#each reviewDB}}
+                <div class="review-content">
+                    <div>
+                        <h3><i class="fas fa-user-circle"></i> {{user}}unknown</h3>
+                        <p class="rating" data-rating ="{{score}}" style="padding-bottom: 5px">
+                            {{score}}
+                            {{!-- <i class="fas fa-star"></i> --}}
+                        </p>
+                        <p style = "font-size: 14px; padding-bottom:10px"><span>     </span>{{review}}</p>
+                    </div>
+                </div>
+                <hr>
+                {{/each}}
+            </div>
+
+
+            <!-- review submit-->
+            <div class="review">
+                <form> 
+                    <span onmouseover="starmark(this)" onclick="starmark(this)" id="1one" style="font-size:20px"  class="fas fa-star checked"></span>
+                    <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one"  style="font-size:20px" class="fas fa-star "></span>
+                    <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one"  style="font-size:20px" class="fas fa-star "></span>
+                    <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"  style="font-size:20px" class="fas fa-star"></span>
+                    <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"  style="font-size:20px" class="fas fa-star"></span>                        
+                    <textarea class="form-control" rows="3" id="comment" placeholder="Enter your review"></textarea>
+                    <button id="review_submit" type="button" data-id="{{eventBriteDB.data.id}}" class="btn btn-primary">Submit</button>
+
+                </form>
+            </div>
+
 		</div>
 	</div>
 
@@ -127,20 +147,47 @@
 
 	</div>
 
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         
             //initial setup
             document.addEventListener('DOMContentLoaded', function(){
+
                 let stars = document.querySelectorAll('.star');
                 stars.forEach(function(star){
                     star.addEventListener('click', setRating); 
                 });
+
+                setStar();
                 
                 ///let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
                 ///let target = stars[rating - 1];
                 ///target.dispatchEvent(new MouseEvent('click'));
 
             });
+
+            function setStar(){
+                $('.rating').each(function () {
+                    var rating = $(this).data("rating");
+                    for(var i =0; i< rating; i++){
+                        $(this).append("<i class='fas fa-star checked'></i>");
+                    }
+                    for(var i =0; i< 5-rating; i++){
+                        $(this).append("<i class='fas fa-star'></i>");
+                    }
+
+                });
+
+                //let stars = document.querySelectorAll('.rating');
+                //stars.forEach(function(star){
+                //    var rating = star.getAttribute('data-rating')
+                //    for(var i =0; i< rating; i++){
+                //        star.insertAdjacentHTML("<i class='fas fa-star'></i>");
+                //    }
+                //})
+            }
+
             function setRating(ev){
                 let span = ev.currentTarget;
                 let stars = document.querySelectorAll('.star');
@@ -162,5 +209,5 @@
             }
             
         </script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
 <script src="/js/post.js"></script>

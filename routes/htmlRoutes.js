@@ -27,14 +27,14 @@ module.exports = function(app) {
     
   });
 
-  app.get("/event/:page", function(req, res){
 
+  app.get("/event/:page", function(req, res){
     axios({
       method:"get",
       url : "https://www.eventbriteapi.com/v3/events/search/?"+
       "location.address=Philadelphia&"+
       "token=IJBDXJMHIUBUT3BVNWH6&"+
-      "page="+req.params.page
+      "page="+ req.params.page
     })
     .then(function(eventBriteDB){
       res.render("event", {eventBriteDB})
@@ -75,12 +75,22 @@ module.exports = function(app) {
             url : "https://www.eventbriteapi.com/v3/venues/"+venue_id+"/?token=IJBDXJMHIUBUT3BVNWH6"
           })
           .then(function(venueDB){
-            res.render("post", {
-              eventBriteDB : eventBriteDB,
-              categoryDB : categoryDB,
-              organizerDB : organizerDB,
-              venueDB : venueDB
+            db.Review.findAll({
+              where : {
+                event_id : req.params.id
+              }
+            }).then(function(reviewDB){
+              console.log("reviewDB---------------------")
+              console.log(reviewDB);
+              res.render("post", {
+                eventBriteDB : eventBriteDB,
+                categoryDB : categoryDB,
+                organizerDB : organizerDB,
+                venueDB : venueDB,
+                reviewDB : reviewDB
+              })
             })
+            
           })
           
         })
@@ -89,26 +99,6 @@ module.exports = function(app) {
 
     
   });
-
-  // app.get("/test", function(req, res){
-  //   var queryString = "https://phillyfunguide.com/api/events?apikey="
-  //   var apiKey = "w236089434596839311";
-  //   queryString += apiKey;
-  //   queryString += "&limit=18"
-  //   axios({
-  //     method:'get',
-  //     url: queryString
-  //   })
-  //     .then(function(funGuideDB) {
-        
-  //       for(var i=0; i<funGuideDB.data.items.length; i++){
-  //         console.log("----------------funsavers----------------");
-  //         console.log(funGuideDB.data.items[i].funsavers);
-  //       }
-        
-        
-  //   });
-  // });
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {

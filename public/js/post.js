@@ -11,8 +11,23 @@ function starmark(item){
         }
     }
 }
-function result(){
-    //Rating : Count
-    //Review : Comment(id)
-    alert("Rating : "+count+"\nReview : "+document.getElementById("comment").value);
-}
+
+$("#review_submit").on("click", function(){
+    var newReview = {
+        score : count,
+        review : $("#comment").val(),
+        event_id : $(this).data("id")
+    }
+    
+    $.ajax("/api/review", {
+        type: "POST",
+        data: newReview
+      }).then(
+        function(response) {
+          console.log("created new revies on event id",$(this).data("id"));
+          console.log(response)
+          // Reload the page to get the updated list
+          location.reload();
+        }
+      );
+})
