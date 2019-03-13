@@ -22,14 +22,27 @@ module.exports = function(app) {
       url : "https://www.eventbriteapi.com/v3/events/search/?location.address=Philadelphia&token=IJBDXJMHIUBUT3BVNWH6"
     })
     .then(function(eventBriteDB){
-      // console.log(eventBriteDB.data.events[0]);
       res.render("event", {eventBriteDB})
     });
-    // db.EventsTest.findAll({}).then(function(dbEvents){
-    //   res.render("event", {dbEvents});
-    // })
     
   });
+
+  app.get("/event/:page", function(req, res){
+
+    axios({
+      method:"get",
+      url : "https://www.eventbriteapi.com/v3/events/search/?"+
+      "location.address=Philadelphia&"+
+      "token=IJBDXJMHIUBUT3BVNWH6&"+
+      "page="+req.params.page
+    })
+    .then(function(eventBriteDB){
+      res.render("event", {eventBriteDB})
+    });
+    
+  });
+
+
 
   app.get("/calendar", function(req, res){
     res.render("calendar");
