@@ -81,15 +81,13 @@
 							{{!-- <p>Far far away, behind the word mountains, far from the countries Vokalia..</p> --}}
 						</div>
 						<hr>
-						<div class="fh5co-text">
+						<div class="fh5co-text" style="padding: 10px 20px 20px 20px">
 							<p>Start Date : {{start.local}}</p>
 							<p>End Date : {{end.local}}</p>
 							<p>{{venueAddress}}</p>
-							{{#unless is_free}}
-								<p>Free</p>
-							{{/unless}}
+							{{#if is_free}}<p style="color: #f54c53;">Free</p>{{else}}<p>paid</p>{{/if}}
 						</div>
-						<hr>
+						{{!-- <hr>
 						<div class="fh5co-review">
 							<p>
 								<span class="fas fa-star"></span>
@@ -99,13 +97,13 @@
 								<span class="fas fa-star"></span>
 							</p>
 							<p><i class="fas fa-comments"></i> 0 Comments</p>
-						</div>
+						</div> --}}
 					</a>
 				</div>
 				{{/each}}
 
 			</div>
-			{{eventBriteDB.data.pagination.page_count}}
+			{{!-- {{eventBriteDB.data.pagination.page_count}} --}}
 
 			<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
@@ -162,3 +160,4 @@
 	</div>
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/event.js"></script>

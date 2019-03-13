@@ -67,9 +67,9 @@ a:hover, a:active, a:focus {
   text-decoration: none;
 }
 
-p {
+/* p {
   margin-bottom: 20px;
-}
+} */
 
 h1, h2, h3, h4, h5, h6, figure {
   color: #000;
@@ -1878,12 +1878,21 @@ form label {
   /* font-size: 14px; */
   font-weight: bold;
 }
+/* ================================================== */
+/* review */
+/* ================================================== */
 .review .checked {
   color: orange;
   
 }
 .review textarea {
   margin-bottom: 5px;
+}
+.review .review-content h3, .review .review-content p {
+  margin-bottom: 0px;
+}
+.review { 
+  margin-bottom: 30px;
 }
 /* ================================================== */
 /* Calendar */
