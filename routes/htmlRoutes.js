@@ -22,7 +22,16 @@ module.exports = function(app) {
       url : "https://www.eventbriteapi.com/v3/events/search/?location.address=Philadelphia&token=IJBDXJMHIUBUT3BVNWH6"
     })
     .then(function(eventBriteDB){
-      res.render("event", {eventBriteDB})
+      axios({
+        method: "get",
+        url : "https://www.eventbriteapi.com/v3/categories/?token=IJBDXJMHIUBUT3BVNWH6"
+      })
+      .then(function(categoryDB){
+        res.render("event", {
+          eventBriteDB : eventBriteDB,
+          categoryDB : categoryDB
+        })
+      })
     });
     
   });
@@ -99,6 +108,49 @@ module.exports = function(app) {
 
     
   });
+
+  app.get("/search/:searchTerm", function(req, res){
+    console.log("search=============================");
+    console.log(req.params.searchTerm);
+
+    axios({
+      method:"get",
+      url : "https://www.eventbriteapi.com/v3/events/search/?q="+req.params.searchTerm+"&location.address=Philadelphia&token=IJBDXJMHIUBUT3BVNWH6"
+    })
+    .then(function(searchDB){
+      axios({
+        method: "get",
+        url : "https://www.eventbriteapi.com/v3/categories/?token=IJBDXJMHIUBUT3BVNWH6"
+      })
+      .then(function(categoryDB){
+        res.render("event", {
+          eventBriteDB : searchDB,
+          categoryDB : categoryDB
+        })
+        // res.json(eventBriteDB);
+      })
+    });
+  });
+
+  app.get("/event/category/:id", function(req, res){
+    axios({
+      method:"get",
+      url : "https://www.eventbriteapi.com/v3/events/search/?location.address=Philadelphia&categories="+req.params.id+"&token=IJBDXJMHIUBUT3BVNWH6"
+    })
+    .then(function(eventBriteDB){
+      axios({
+        method: "get",
+        url : "https://www.eventbriteapi.com/v3/categories/?token=IJBDXJMHIUBUT3BVNWH6"
+      })
+      .then(function(categoryDB){
+        res.render("event", {
+          eventBriteDB : eventBriteDB,
+          categoryDB : categoryDB
+        })
+        // res.json(eventBriteDB);
+      })
+    });
+  })
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
