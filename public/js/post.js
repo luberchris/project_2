@@ -7,6 +7,7 @@ $(document).ready(function() {
 });
 
 $.get("/api/user_data").then(function(data) {
+    console.log(data);
     $("#login").html(data.username);
     $("#review_submit").attr("data-user", data.id);
 });

@@ -100,23 +100,34 @@ var handleDeleteBtnClick = function() {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-var bcrypt = require('bcrypt');
-bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash("my password", salt, function(err, hash) {
-        // Store hash in your password DB.
-    });
-});
+// var bcrypt = require('bcrypt');
+// bcrypt.genSalt(10, function(err, salt) {
+//     bcrypt.hash("my password", salt, function(err, hash) {
+//         // Store hash in your password DB.
+//     });
+// });
  
-// or
+// // or
  
-bcrypt.hash('bacon', 10, function(err, hash) {
-    // Store hash in your password DB.
-});
+// bcrypt.hash('bacon', 10, function(err, hash) {
+//     // Store hash in your password DB.
+// });
 
-// Load password hash from DB
-bcrypt.compare("my password", hash, function(err, res) {
-  // res === true
-});
-bcrypt.compare("not my password", hash, function(err, res) {
-  // res === false
+// // Load password hash from DB
+// bcrypt.compare("my password", hash, function(err, res) {
+//   // res === true
+// });
+// bcrypt.compare("not my password", hash, function(err, res) {
+//   // res === false
+// });
+
+$.get("/api/user_data").then(function(data) {
+  
+  if(data.username){
+    $("#login_div").empty();
+    console.log("login");
+    // $("#navLogin").html("s<a href='#'>Yoonhee</a>");
+
+  }
+
 });

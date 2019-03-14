@@ -36,7 +36,7 @@ module.exports = function(app) {
     // res.json("/", {
     //   userDB : res.body
     // });
-    res.json("/members");
+    res.redirect("/");
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -76,6 +76,7 @@ module.exports = function(app) {
         username: req.user.username,
         id: req.user.id
       });
+      // res.json({req});
     }
   });
 
