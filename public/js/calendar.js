@@ -28,7 +28,11 @@ $(document).ready(function() {
       selectHelper: true,
       editable: true,
       eventLimit: true, // allow "more" link when too many events
-      events: eventsDB
-    });
+      events: eventsDB,
+    })
   });
   });
+
+  
+
+
