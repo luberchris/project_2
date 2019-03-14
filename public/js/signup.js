@@ -19,6 +19,7 @@ $(document).ready(function() {
     signUpUser(userData.username, userData.password);
     usernameInput.val("");
     passwordInput.val("");
+    
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
@@ -29,6 +30,7 @@ $(document).ready(function() {
       password: password
     }).then(function(data) {
       window.location.replace(data);
+      location.reload();
       // If there's an error, handle it by throwing up a bootstrap alert
     }).catch(handleLoginErr);
   }
