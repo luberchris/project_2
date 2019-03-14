@@ -22,8 +22,8 @@
                                 <li><a href="#">...</a></li>
                             </ul> --}}
                         </li>
-                        <li><a href="/calendar">Calender</a></li>
-                        <li><a href="#">log in</a></li>
+                        <li><a href="/calendar">Calendar</a></li>
+                        <li><a href="/">Log In</a></li>
                     </ul>
 				</div>
 			</div>
@@ -75,7 +75,7 @@
                         <p class=""><span>Cost :</span>
                         {{#if is_free}}Free{{else}}paid{{/if}}</p>
                         <br>
-                        <p><span>Categoty : </span>{{categoryDB.data.name}}</p>
+                        <p><span>Category : </span>{{categoryDB.data.name}}</p>
                         <p><span>Organizer : </span>{{organizerDB.data.name}}</p>
                         <p><span>Website : </span>{{organizerDB.data.website}}</p>
                         {{!-- <p><span>Ticket URL : </span><a href="{{dbEvent.ticketUrl}}">{{dbEvent.ticketUrl}}</a></p> --}}
@@ -95,7 +95,7 @@
                 {{#each reviewDB}}
                 <div class="review-content">
                     <div>
-                        <h3><i class="fas fa-user-circle"></i> {{user}}unknown</h3>
+                        <h3><i class="fas fa-user-circle"></i> Unknown</h3>
                         <p class="rating" data-rating ="{{score}}" style="padding-bottom: 5px">
                             {{score}}
                             {{!-- <i class="fas fa-star"></i> --}}
@@ -117,7 +117,7 @@
                     <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"  style="font-size:20px" class="fas fa-star"></span>
                     <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"  style="font-size:20px" class="fas fa-star"></span>                        
                     <textarea class="form-control" rows="3" id="comment" placeholder="Enter your review"></textarea>
-                    <button id="review_submit" type="button" data-id="{{eventBriteDB.data.id}}" class="btn btn-primary">Submit</button>
+                    <button id="review_submit" type="button" data-id="{{eventBriteDB.data.id}}" data-user="{{user}}" class="btn btn-primary">Submit</button>
 
                 </form>
             </div>
