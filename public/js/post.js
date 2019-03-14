@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    $.get("/api/user_data").then(function(data) {
+        console.log(data.id)
+        $("#review_submit").data("user", data.id);
+    });
+});
 var count;
 function starmark(item){
     count=item.id[0];
@@ -10,13 +16,14 @@ function starmark(item){
             document.getElementById((i+1)+subid).style.color="black";
         }
     }
-}
+};
 
 $("#review_submit").on("click", function(){
     var newReview = {
         score : count,
         review : $("#comment").val(),
-        event_id : $(this).data("id")
+        event_id : $(this).data("id"),
+        user_id : $(this).data("user")
     }
     
     $.ajax("/api/review", {
@@ -24,7 +31,7 @@ $("#review_submit").on("click", function(){
         data: newReview
       }).then(
         function(response) {
-          console.log("created new revies on event id",$(this).data("id"));
+          console.log("created new review for event id",$(this).data("id") +"by" + $(this).data("user"));
           console.log(response)
           // Reload the page to get the updated list
           location.reload();

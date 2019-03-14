@@ -244,10 +244,11 @@ h1, h2, h3, h4, h5, h6, figure {
 .gtco-nav ul li.active > a {
   color: #fff !important;
 }
-
+/* 
 #gtco-header {
   background: #fdd035;
-}
+} */
+
 @media screen and (max-width: 768px) {
   #gtco-header.gtco-cover {
     height: inherit !important;
@@ -1272,7 +1273,12 @@ form label {
   color: #fff;
   border: 2px solid #f54c53 !important;
 }
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+.btn-primary .active {
+  background: #f6646a !important;
+  border-color: #f6646a !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active{
   background: #f6646a !important;
   border-color: #f6646a !important;
 }
@@ -1904,4 +1910,7 @@ form label {
 
 .fc-toolbar {
   margin-top: 700px;
+}
+.event_header {
+  background-image: url(../images/event_top.jpg);
 }
