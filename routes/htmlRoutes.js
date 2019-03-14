@@ -82,12 +82,13 @@ module.exports = function(app) {
             }).then(function(reviewDB){
               console.log("reviewDB---------------------")
               console.log(reviewDB);
+              console.log(req.user.username)
               res.render("post", {
                 eventBriteDB : eventBriteDB,
                 categoryDB : categoryDB,
                 organizerDB : organizerDB,
                 venueDB : venueDB,
-                reviewDB : reviewDB
+                reviewDB : reviewDB,
               })
             })
             
@@ -114,6 +115,7 @@ module.exports = function(app) {
   });
 
   app.get("/members", isAuthenticated, function(req, res) {
+    console.log(req.user);
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
