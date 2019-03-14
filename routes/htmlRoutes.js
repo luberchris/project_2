@@ -85,14 +85,15 @@ module.exports = function(app) {
             url : "https://www.eventbriteapi.com/v3/venues/"+venue_id+"/?token=IJBDXJMHIUBUT3BVNWH6"
           })
           .then(function(venueDB){
+
             db.Review.findAll({
               where : {
-                event_id : req.params.id
-              }
+                event_id : req.params.id 
+              },
+              include: [db.User]
             }).then(function(reviewDB){
               console.log("reviewDB---------------------")
               console.log(reviewDB);
-              console.log(req.user.username)
               res.render("post", {
                 eventBriteDB : eventBriteDB,
                 categoryDB : categoryDB,

@@ -1,9 +1,16 @@
 $(document).ready(function() {
-    $.get("/api/user_data").then(function(data) {
-        console.log(data.id)
-        $("#review_submit").data("user", data.id);
-    });
+    // $.get("/api/user_data").then(function(data) {
+    //     console.log(data.id)
+    //     $("#login").html(data.username);
+    //     $("#review_submit").data("user", data.id);
+    // });
 });
+
+$.get("/api/user_data").then(function(data) {
+    $("#login").html(data.username);
+    $("#review_submit").attr("data-user", data.id);
+});
+
 var count;
 function starmark(item){
     count=item.id[0];
@@ -23,7 +30,7 @@ $("#review_submit").on("click", function(){
         score : count,
         review : $("#comment").val(),
         event_id : $(this).data("id"),
-        user_id : $(this).data("user")
+        UserId : $(this).data("user")
     }
     
     $.ajax("/api/review", {
