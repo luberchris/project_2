@@ -1,20 +1,23 @@
 module.exports = {
-  development: {
-    username: "o26hjgg4qohcnhea",
-    password: "k1bvof53qjjwk3m7",
-    database: "qnzrky2vg4n4sjmn",
-    host: "op2hpcwcbxb1t4z9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    dialect: "mysql"
+  "development": {
+    "username": process.env.MYSQL_USER,
+    "password": process.env.MYSQL_KEY,
+    "database": process.env.MYSQL_DBNAME,
+    "host": process.env.MYSQL_HOST,
+    "dialect": "mysql"
   },
-  test: {
-    username: "root",
-    password: "001059jyh",
-    database: "database_test",
-    host: "localhost",
-    dialect: "mysql"
+
+  "test": {
+    "username": "root",
+    "password": process.env.TEST_PASS, 
+    "database": "database_test",
+    "host": "localhost",
+    "dialect": "mysql"
   },
-  production: {
-    use_env_variable: process.env.JAWSDB_URL,
-    dialect: "mysql"
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
   }
 };
+
+// put your own password in TEST_PASS='here' (inside .env file)
