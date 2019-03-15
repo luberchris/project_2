@@ -269,6 +269,8 @@
 			} , { offset: '90%' } );
 		}
 	};
+
+	
 	
 	
 	$(function(){
@@ -282,6 +284,17 @@
 		goToTop();
 		loaderPage();
 		counterWayPoint();
+
+		$.get("/api/user_data").then(function(data) {
+  
+			if(data.username){
+			  $("#login_div").empty();
+			  console.log("login");
+			  $(".navLogin").html("<a href='/'>"+data.username+"</a>"+
+			  "<ul class='dropdown'><li><a href='/favo/"+data.id+"'>My Events</a></li><li><a href='/logout'>Log Out</a></li></ul>");
+			}
+		  
+		  });
 	});
 
 }());

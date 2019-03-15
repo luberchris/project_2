@@ -13,18 +13,21 @@
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
-                        <li class="has-dropdown">
-                            <a href="/event">Event</a>
-                            {{!-- <ul class="dropdown">
-                                <li><a href="#">...</a></li>
-                                <li><a href="#">...</a></li>
-                                <li><a href="#">...</a></li>
-                                <li><a href="#">...</a></li>
-                            </ul> --}}
-                        </li>
-                        <li><a href="/calendar">Calendar</a></li>
-                        <li><a id="login" href="/">Log In</a></li>
-                    </ul>
+						<li class="has-dropdown">
+							<a href="/event">Event</a>
+							{{!-- <ul class="dropdown">
+								<li><a href="#">My Favorite</a></li>
+							</ul> --}}
+						</li>
+
+						<li><a href="/calendar">Calendar</a></li>
+						<li class="navLogin has-dropdown">
+							<a href="#">Log in</a>
+						
+						</li>
+
+
+					</ul>
 				</div>
 			</div>
 			
@@ -82,7 +85,7 @@
                     </div>
 
                     <div>
-                        <a href="#"><button type="button" class="btn btn-primary btn-sm">ADD <i class="fas fa-heart"></i></button></a>
+                        <a href="#"><button id="addButton" data-id="{{eventBriteDB.data.id}}" type="button" class="btn btn-primary btn-sm">ADD <i class="fas fa-heart"></i></button></a>
                     </div>
                     
                 </div>

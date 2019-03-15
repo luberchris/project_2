@@ -16,17 +16,14 @@
 						<li class="has-dropdown">
 							<a href="/event">Event</a>
 							{{!-- <ul class="dropdown">
-								<li><a href="#">My Favorite</a></li>
+								<li><a href="#">...</a></li>
+								<li><a href="#">...</a></li>
+								<li><a href="#">...</a></li>
+								<li><a href="#">...</a></li>
 							</ul> --}}
 						</li>
-
-						<li><a href="/calendar">Calendar</a></li>
-						<li class="navLogin has-dropdown">
-							<a href="#">Log in</a>
-						
-						</li>
-
-
+						<li><a href="/calendar">Calender</a></li>
+						<li><a href="#">Log in</a></li>
 					</ul>
 				</div>
 			</div>
@@ -36,8 +33,8 @@
     
 
 	<!-- header -->
-	<header id="gtco-header" class="gtco-cover gtco-cover-sm event_header" role="banner">
-		{{!-- style="background-image: url(images/event_top.jpg)" --}}
+	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/favorite_top.jpg)">
+
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row">
@@ -48,7 +45,7 @@
 
 						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
 							<span class="intro-text-small">Events</span>
-							<h1>Event Search</h1>	
+							<h1>My Events</h1>	
 						</div>
 						
 					</div>
@@ -63,26 +60,18 @@
 
 	<div class="gtco-section">
 		<div class="gtco-container">
-			<div class="row">
+			{{!-- <div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
 					<h2>Events</h2>
 					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-					{{!-- categories --}}
-					<a href="/event"><button type="button" class="btn btn-primary btn-sm">All</button></a>
-					{{#each categoryDB.data.categories}}
-					<a href="/event/category/{{id}}"><button type="button" class="btn btn-primary btn-sm">{{name}}</button></a>
-					{{/each}}					
-					<form class="row" style="margin-top: 30px;">
-						<input id="searchInput" class="form-control mr-sm-2 col-10" placeholder="Search Events" aria-label="Search">
-						<button id="search" class="btn my-2 my-sm-0 btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
-					</form>					
+								
 				</div>
-			</div>
+			</div> --}}
 
 			<!-- event div -->
 			<div class="row">
 
-				{{#each eventBriteDB.data.events}}
+				{{#each favoriteDB}}
 				<div class="col-lg-4 col-md-4 col-sm-6">
 					<a href="/post/{{id}}" class="fh5co-project-item">
 						<figure>
@@ -90,7 +79,7 @@
 							<img src="{{logo.original.url}}" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-title">
-							<h2>{{name.text}}</h2>
+							<h2>{{eventId}}</h2>
 							{{!-- <p>Far far away, behind the word mountains, far from the countries Vokalia..</p> --}}
 						</div>
 						<hr>
@@ -100,43 +89,11 @@
 							<p>{{venueAddress}}</p>
 							{{#if is_free}}<p style="color: #f54c53;">Free</p>{{else}}<p>paid</p>{{/if}}
 						</div>
-						{{!-- <hr>
-						<div class="fh5co-review">
-							<p>
-								<span class="fas fa-star"></span>
-								<span class="fas fa-star"></span>
-								<span class="fas fa-star"></span>
-								<span class="fas fa-star"></span>
-								<span class="fas fa-star"></span>
-							</p>
-							<p><i class="fas fa-comments"></i> 0 Comments</p>
-						</div> --}}
 					</a>
 				</div>
 				{{/each}}
 
 			</div>
-			{{!-- {{eventBriteDB.data.pagination.page_count}} --}}
-
-			<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-center">
-					{{!-- <li class="page-item">
-					<a class="page-link" href="#" tabindex="-1">Previous</a>
-					</li> --}}
-					<li class="page-item"><a class="page-link" href="/event/1">1</a></li>
-					<li class="page-item"><a class="page-link" href="/event/2">2</a></li>
-					<li class="page-item"><a class="page-link" href="/event/3">3</a></li>
-					<li class="page-item"><a class="page-link" href="/event/4">4</a></li>
-					<li class="page-item"><a class="page-link" href="/event/5">5</a></li>
-					<li class="page-item"><a class="page-link" href="/event/6">6</a></li>
-					<li class="page-item"><a class="page-link" href="/event/7">7</a></li>
-					<li class="page-item"><a class="page-link" href="/event/8">8</a></li>
-					<li class="page-item"><a class="page-link" href="/event/9">9</a></li>
-					{{!-- <li class="page-item">
-					<a class="page-link" href="#">Next</a>
-					</li> --}}
-				</ul>
-			</nav>
 
 		</div>
 	</div>
@@ -173,4 +130,4 @@
 	</div>
 
 	<script src="https://code.jquery.com/jquery.js"></script>
-<script src="/js/event.js"></script>
+{{!-- <script src="/js/event.js"></script> --}}
