@@ -22,7 +22,7 @@
 
 						<li><a href="/calendar">Calendar</a></li>
 						<li class="navLogin has-dropdown">
-							<a href="#">Log in</a>
+							<a href="/">Log in</a>
 						
 						</li>
 
@@ -84,8 +84,13 @@
                         {{!-- <p><span>Ticket URL : </span><a href="{{dbEvent.ticketUrl}}">{{dbEvent.ticketUrl}}</a></p> --}}
                     </div>
 
-                    <div>
-                        <a href="#"><button id="addButton" data-id="{{eventBriteDB.data.id}}" type="button" class="btn btn-primary btn-sm">ADD <i class="fas fa-heart"></i></button></a>
+                    <div id="addDiv">
+                        <a href="#"><button id="addButton" data-id="{{eventBriteDB.data.id}}" 
+                        data-name="{{eventBriteDB.data.name.text}}" 
+                        data-img="{{eventBriteDB.data.logo.original.url}}" 
+                        data-star="{{eventBriteDB.data.start.local}}" 
+                        data-end="{{eventBriteDB.data.end.local}}" 
+                        type="button" class="btn btn-primary btn-sm">ADD <i class="fas fa-heart"></i></button></a>
                     </div>
                     
                 </div>

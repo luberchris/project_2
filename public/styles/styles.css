@@ -1917,3 +1917,6 @@ form label {
 .event_header {
   background-image: url(../images/event_top.jpg);
 }
+.favorite_header {
+  background-image: url(../images/favorite_top.jpg);
+}
