@@ -22,7 +22,7 @@
 
 						<li><a href="/calendar">Calendar</a></li>
 						<li class="navLogin has-dropdown">
-							<a href="#">Log in</a>
+							<a href="/">Log in</a>
 						
 						</li>
 
@@ -66,7 +66,7 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
 					<h2>Events</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+					<br>
 					{{!-- categories --}}
 					<a href="/event"><button type="button" class="btn btn-primary btn-sm">All</button></a>
 					{{#each categoryDB.data.categories}}
@@ -87,7 +87,12 @@
 					<a href="/post/{{id}}" class="fh5co-project-item">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="{{logo.original.url}}" alt="Image" class="img-responsive">
+							<img src="
+							{{#if logo.original.url}}
+							{{logo.original.url}}
+							{{else}}
+							images/default.jpg
+							{{/if}}" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-title">
 							<h2>{{name.text}}</h2>
@@ -118,7 +123,7 @@
 			</div>
 			{{!-- {{eventBriteDB.data.pagination.page_count}} --}}
 
-			<nav aria-label="Page navigation example">
+			{{!-- <nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
 					{{!-- <li class="page-item">
 					<a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -136,7 +141,7 @@
 					<a class="page-link" href="#">Next</a>
 					</li> --}}
 				</ul>
-			</nav>
+			</nav> --}}
 
 		</div>
 	</div>

@@ -155,31 +155,13 @@ module.exports = function(app) {
   });
 
   app.get("/favo/:id", function(req, res){
-    var favoriteObj = [];
-    // console.log("req.params.id");
-    // console.log(req.params.id);
     db.Favorite.findAll({
       where : {
         UserId : req.params.id 
       }
     }).then(function(favoriteDB){
-      // console.log(favoriteDB);
-      for(var i=0; i<favoriteDB.length; i++){
-        // console.log(favoriteDB[i].eventId);
-        axios({
-          method:"get",
-          url : "https://www.eventbriteapi.com/v3/events/"+favoriteDB[i].eventId+"?token=IJBDXJMHIUBUT3BVNWH6"
-        })
-        .then(function(eventBriteDB){
-          // console.log(eventBriteDB.data);
-          favoriteObj.push({
-            eventBriteDB : eventBriteDB.data});
-          
-          // console.log(favoriteObj);
-        })
-      }
       res.render("favorite", {
-        favoriteDB : favoriteObj
+        favoriteDB : favoriteDB
       });
     })
     

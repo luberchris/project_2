@@ -11,6 +11,9 @@ $.get("/api/user_data").then(function(data) {
     $("#login").html(data.username);
     $("#review_submit").attr("data-user", data.id);
     $("#addButton").attr("data-user", data.id);
+    if(!data.username){
+        $("#addDiv").empty();
+    }
 });
 
 var count;
@@ -51,6 +54,10 @@ $("#review_submit").on("click", function(){
 $("#addButton").on("click", function(){
     var newFavorite = {
         eventId : $(this).data("id"),
+        eventName : $(this).data("name"),
+        eventImg : $(this).data("img"),
+        eventStart : $(this).data("star"),
+        eventEnd : $(this).data("end"),
         UserId : $(this).data("user")
     }
 
@@ -59,5 +66,6 @@ $("#addButton").on("click", function(){
         data : newFavorite
     }).then(function(response){
         console.log("created new favorite");
-    })
+    });
+
 })

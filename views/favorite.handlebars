@@ -16,14 +16,17 @@
 						<li class="has-dropdown">
 							<a href="/event">Event</a>
 							{{!-- <ul class="dropdown">
-								<li><a href="#">...</a></li>
-								<li><a href="#">...</a></li>
-								<li><a href="#">...</a></li>
-								<li><a href="#">...</a></li>
+								<li><a href="#">My Favorite</a></li>
 							</ul> --}}
 						</li>
-						<li><a href="/calendar">Calender</a></li>
-						<li><a href="#">Log in</a></li>
+
+						<li><a href="/calendar">Calendar</a></li>
+						<li class="navLogin has-dropdown">
+							<a href="/">Log in</a>
+						
+						</li>
+
+
 					</ul>
 				</div>
 			</div>
@@ -33,7 +36,7 @@
     
 
 	<!-- header -->
-	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/favorite_top.jpg)">
+	<header id="gtco-header" class="gtco-cover gtco-cover-sm favorite_header" role="banner">
 
 		<div class="overlay"></div>
 		<div class="gtco-container">
@@ -73,23 +76,24 @@
 
 				{{#each favoriteDB}}
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="/post/{{id}}" class="fh5co-project-item">
+					<a href="/post/{{eventId}}" class="fh5co-project-item mb-1">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="{{logo.original.url}}" alt="Image" class="img-responsive">
+							<img src="{{eventImg}}" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-title">
-							<h2>{{eventId}}</h2>
+							<h2>{{eventName}}</h2>
 							{{!-- <p>Far far away, behind the word mountains, far from the countries Vokalia..</p> --}}
 						</div>
 						<hr>
 						<div class="fh5co-text" style="padding: 10px 20px 20px 20px">
-							<p>Start Date : {{start.local}}</p>
-							<p>End Date : {{end.local}}</p>
-							<p>{{venueAddress}}</p>
-							{{#if is_free}}<p style="color: #f54c53;">Free</p>{{else}}<p>paid</p>{{/if}}
+							<p>Start Date : {{eventStart}}</p>
+							<p>End Date : {{eventEnd}}</p>
 						</div>
 					</a>
+                    <div class="text-center">
+                        <button type="button" data-id="{{id}}" class="deleteFavorite mx-auto btn btn-primary">DELETE</button>
+                    </div>
 				</div>
 				{{/each}}
 
@@ -100,9 +104,7 @@
 
 	<footer id="gtco-footer" role="contentinfo">
 		<div class="gtco-container">
-			
-
-			<div class="row copyright">
+            <div class="row copyright">
 				<div class="col-md-12">
 					<p class="pull-left">
 						<small class="block">&copy; 2019 P.MONTHLY. All Rights Reserved.</small> 
@@ -130,4 +132,4 @@
 	</div>
 
 	<script src="https://code.jquery.com/jquery.js"></script>
-{{!-- <script src="/js/event.js"></script> --}}
+    <script src="/js/favorite.js"></script>
