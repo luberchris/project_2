@@ -87,4 +87,11 @@ module.exports = function(app) {
       res.json(dbReview);
     });
   })
+
+  app.post("/api/favorite",function(req, res){
+    db.Favorite.create(req.body)
+    .then(function(dbFavorite) {
+      res.json(dbFavorite);
+    });
+  })
 };
