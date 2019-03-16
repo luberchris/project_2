@@ -100,10 +100,10 @@
 						</div>
 						<hr>
 						<div class="fh5co-text" style="padding: 10px 20px 20px 20px">
-							<p>Start Date : {{start.local}}</p>
-							<p>End Date : {{end.local}}</p>
+							<span>Start : </span> <p class="start">{{start.local}}</p>
+							<span>End : </span> <p class="end">{{end.local}}</p>
 							<p>{{venueAddress}}</p>
-							{{#if is_free}}<p style="color: #f54c53;">Free</p>{{else}}<p>paid</p>{{/if}}
+						  <span>Cost :</span>{{#if is_free}}<p style="color: #f54c53;">Free</p>{{else}}<p>paid</p>{{/if}}
 						</div>
 						{{!-- <hr>
 						<div class="fh5co-review">

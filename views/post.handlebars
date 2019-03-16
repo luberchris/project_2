@@ -73,7 +73,8 @@
                     <div class="col-md-8">{{eventBriteDB.data.description.text}}</div>
                     
                     <div class="col-md-4">
-                        <p class="mb-0"><span>When : </span>{{eventBriteDB.data.start.local}} ~ {{eventBriteDB.data.end.local}}</p>
+                        <span>Start : </span> <p class="start">{{eventBriteDB.data.start.local}}</p>
+                        <span>End : </span> <p class="end">{{eventBriteDB.data.end.local}}</p>
                         <p class=""><span>Where : </span>{{venueDB.data.address.localized_multi_line_address_display}}</p>
                         <p class=""><span>Cost :</span>
                         {{#if is_free}}Free{{else}}paid{{/if}}</p>
