@@ -289,12 +289,12 @@
 		$(window).on("load", function(){
 			console.log($(".start").html());
 			var startTime=$(".start").html();
-			var startTimeFormatted=moment(startTime).format('MMMM Do YYYY, h:mm:ss a')
+			var startTimeFormatted=moment(startTime).format('MMMM Do YYYY, h:mm a')
 			console.log(startTimeFormatted);
 			$(".start").html(startTimeFormatted);
 			console.log($(".end").html());
 			var endTime=$(".end").html();
-			var endTimeFormatted=moment(endTime).format('MMMM Do YYYY, h:mm:ss a')
+			var endTimeFormatted=moment(endTime).format('MMMM Do YYYY, h:mm a')
 			console.log(endTimeFormatted);
 			$(".end").html(endTimeFormatted);
 		});
