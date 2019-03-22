@@ -1,6 +1,7 @@
 // Requiring path to so we can use relative routes to our HTML files
 var path = require("path");
 var axios = require("axios");
+var moment = require("moment");
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -21,6 +22,10 @@ module.exports = function(app) {
       url : "https://www.eventbriteapi.com/v3/events/search/?location.address=Philadelphia&token=IJBDXJMHIUBUT3BVNWH6"
     })
     .then(function(eventBriteDB){
+      eventBriteDB.data.events.forEach(function(event){
+        event.start.local=moment(event.start.local).format('MMMM Do YYYY, h:mm a');
+        event.end.local=moment(event.end.local).format('MMMM Do YYYY, h:mm a');
+      })
       axios({
         method: "get",
         url : "https://www.eventbriteapi.com/v3/categories/?token=IJBDXJMHIUBUT3BVNWH6"
@@ -69,6 +74,8 @@ module.exports = function(app) {
       category_id = eventBriteDB.data.category_id;
       venue_id = eventBriteDB.data.venue_id;
       organizer_id = eventBriteDB.data.organizer_id;
+      eventBriteDB.data.start.local=moment(eventBriteDB.data.start.local).format('MMMM Do YYYY, h:mm a');
+      eventBriteDB.data.end.local=moment(eventBriteDB.data.end.local).format('MMMM Do YYYY, h:mm a');
       axios({
         method:"get",
         url : "https://www.eventbriteapi.com/v3/categories/"+category_id+"/?token=IJBDXJMHIUBUT3BVNWH6"
